@@ -13,17 +13,18 @@ export const Listado = ({data}) => {
         </tr>
       </thead>
       <tbody>
-      {data.map((colaborador, index) => {
-        return (
-          <tr key={index}>
-            <td>{colaborador.nombre}</td>
-            <td>{colaborador.correo}</td>
-            <td>{colaborador.edad}</td>
-            <td>{colaborador.cargo}</td>
-            <td>{colaborador.telefono}</td>
-          </tr>
+        {data.map((colaborador, index) => {
+          const {nombre, correo, edad, cargo, telefono} = colaborador
+          return (
+            <tr key={index}>
+              <td>{nombre}</td>
+              <td>{correo}</td>
+              <td>{edad}</td>
+              <td>{cargo}</td>
+              <td>{telefono}</td>
+            </tr>
+          )}
         )}
-      )}
       </tbody>
     </Table>
   )
