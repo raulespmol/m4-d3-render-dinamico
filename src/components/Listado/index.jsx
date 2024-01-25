@@ -1,10 +1,6 @@
 import Table from 'react-bootstrap/Table';
 
 export const Listado = ({data}) => {
-  const handleData = (data) => {
-    data.map(colaborador)
-  }
-
   return (
     <Table striped bordered hover>
       <thead>
@@ -17,10 +13,18 @@ export const Listado = ({data}) => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-        </tr>
+      {data.map((colaborador, index) => {
+        return (
+          <tr key={index}>
+            <td>{colaborador.nombre}</td>
+            <td>{colaborador.correo}</td>
+            <td>{colaborador.edad}</td>
+            <td>{colaborador.cargo}</td>
+            <td>{colaborador.telefono}</td>
+          </tr>
+        )}
+      )}
       </tbody>
     </Table>
-  );
+  )
 }
