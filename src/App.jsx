@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Listado data={BaseColaboradores}/>
-      <Formulario />
+      <Formulario data={BaseColaboradores}/>
     </>
   )
 }

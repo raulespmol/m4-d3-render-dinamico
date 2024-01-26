@@ -3,21 +3,30 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './index.css'
 
-const Formulario = () => {
-  const [nombre, setNombre] = useState('') 
-  const [correo, setCorreo] = useState('') 
-  const [edad, setEdad] = useState('') 
-  const [cargo, setCargo] = useState('') 
-  const [telefono, setTelefono] = useState('') 
+const Formulario = ({data}) => {
+  // const [nombre, setNombre] = useState('') 
+  // const [correo, setCorreo] = useState('') 
+  // const [edad, setEdad] = useState('') 
+  // const [cargo, setCargo] = useState('') 
+  // const [telefono, setTelefono] = useState('') 
+
+  const [colaborador, setColaborador] = useState({
+    nombre: '',
+    correo: '',
+    edad: '',
+    cargo: '',
+    telefono: ''
+  })
 
   const validateForm = e => {
     e.preventDefault()
-    if(!nombre || !correo || !edad || !cargo || !telefono){
+    const {nombre, correo, edad, cargo, telefono} = colaborador
+     if(!nombre || !correo || !edad || !cargo || !telefono){
       //ALERTA COMPLETA LOS CAMPOS
       console.log('hay campos vacios');
       return
     }
-
+    /*
     const mailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
     if(!correo.match(mailRegex)){
       //ALERTA FORMATO CORREO
@@ -34,18 +43,22 @@ const Formulario = () => {
     
     
     //ALERTA INGRESO EXITOSO
-    setNombre('')
-    setCorreo('')
-    setEdad('')
-    setCargo('')
-    setTelefono('')
+    setColaborador({
+    nombre: '',
+    correo: '',
+    edad: '',
+    cargo: '',
+    telefono: ''
+  }) */
   }
 
-  const handleNombre = e => setNombre(e.target.value)
-  const handleCorreo = e => setCorreo(e.target.value)
-  const handleEdad = e => setEdad(e.target.value)
-  const handleCargo = e => setCargo(e.target.value)
-  const handleTelefono = e => setTelefono(e.target.value)
+  const handleChange = (dato, valor) => {
+    setColaborador(datosPrevios => ({
+      ...datosPrevios,
+      [dato]: valor
+      })
+    );
+  }
 
   return (
     <Form onSubmit={validateForm}>
@@ -54,38 +67,38 @@ const Formulario = () => {
         placeholder="Nombre"
         type="text" 
         name="nombre"
-        value={nombre}
+        value={colaborador.nombre}
         autoComplete="false"
-        onChange={handleNombre}
+        onChange={e => handleChange('nombre', e.target.value)}
       />
       <Form.Control 
         placeholder="Correo"
         type="text" 
         name="correo"
-        value={correo}
-        onChange={handleCorreo}
+        value={colaborador.correo}
+        onChange={e => handleChange('correo', e.target.value)}
       />
       <Form.Control 
         placeholder="Edad"
         type="number"
         min={1}
         name="edad"
-        value={edad}
-        onChange={handleEdad}
+        value={colaborador.edad}
+        onChange={e => handleChange('edad', e.target.value)}
       />
       <Form.Control 
         placeholder="Cargo"
         type="text"
         name="cargo"
-        value={cargo}
-        onChange={handleCargo}
+        value={colaborador.cargo}
+        onChange={e => handleChange('cargo', e.target.value)}
       />
       <Form.Control 
         placeholder="Telefono"
         type="tel"
         name="telefono"
-        value={telefono}
-        onChange={handleTelefono}
+        value={colaborador.telefono}
+        onChange={e => handleChange('telefono', e.target.value)}
       />
       <Button variant="primary" type="submit">
         Agregar
