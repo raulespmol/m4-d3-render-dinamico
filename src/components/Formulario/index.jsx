@@ -1,4 +1,7 @@
 import { useState } from "react"
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import './index.css'
 
 const Formulario = () => {
   const [nombre, setNombre] = useState('') 
@@ -11,17 +14,20 @@ const Formulario = () => {
     e.preventDefault()
     if(!nombre || !correo || !edad || !cargo || !telefono){
       //ALERTA COMPLETA LOS CAMPOS
+      console.log('hay campos vacios');
       return
     }
 
     const mailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
     if(!correo.match(mailRegex)){
       //ALERTA FORMATO CORREO
+      console.log('formato correo incorrecto');
       return
     }
 
     if(parseInt(edad) <= 18){
       //ALERTA MENOR EDAD
+      console.log('no se permiten menores de edad');
       return
     }
 
@@ -42,8 +48,9 @@ const Formulario = () => {
   const handleTelefono = e => setTelefono(e.target.value)
 
   return (
-    <form onSubmit={validateForm}>
-      <input 
+    <Form onSubmit={validateForm}>
+      <h2>Agregar Colaborador</h2>
+      <Form.Control 
         placeholder="Nombre"
         type="text" 
         name="nombre"
@@ -51,36 +58,39 @@ const Formulario = () => {
         autoComplete="false"
         onChange={handleNombre}
       />
-      <input 
-        placeholder="ejemplo@correo.cl"
+      <Form.Control 
+        placeholder="Correo"
         type="text" 
         name="correo"
         value={correo}
         onChange={handleCorreo}
       />
-      <input 
+      <Form.Control 
         placeholder="Edad"
-        type="text"
+        type="number"
+        min={1}
         name="edad"
         value={edad}
         onChange={handleEdad}
       />
-      <input 
+      <Form.Control 
         placeholder="Cargo"
         type="text"
         name="cargo"
         value={cargo}
         onChange={handleCargo}
       />
-      <input 
+      <Form.Control 
         placeholder="Telefono"
         type="tel"
         name="telefono"
         value={telefono}
         onChange={handleTelefono}
       />
-      <button type="submit">Registrarse</button>
-    </form>
+      <Button variant="primary" type="submit">
+        Agregar
+      </Button>
+    </Form>
   )
 }
 
