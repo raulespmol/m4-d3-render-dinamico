@@ -3,14 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './index.css'
 
-const Formulario = ({data}) => {
-  // const [nombre, setNombre] = useState('') 
-  // const [correo, setCorreo] = useState('') 
-  // const [edad, setEdad] = useState('') 
-  // const [cargo, setCargo] = useState('') 
-  // const [telefono, setTelefono] = useState('') 
-
-  const [colaborador, setColaborador] = useState({
+const Formulario = ({colaboradores, setColaboradores}) => {
+  const [colaboradorNuevo, setColaboradorNuevo] = useState({
     nombre: '',
     correo: '',
     edad: '',
@@ -18,15 +12,15 @@ const Formulario = ({data}) => {
     telefono: ''
   })
 
-  const validateForm = e => {
-    e.preventDefault()
-    const {nombre, correo, edad, cargo, telefono} = colaborador
+  const validateForm = () => {
+    const {nombre, correo, edad, cargo, telefono} = colaboradorNuevo
+
      if(!nombre || !correo || !edad || !cargo || !telefono){
       //ALERTA COMPLETA LOS CAMPOS
       console.log('hay campos vacios');
       return
     }
-    /*
+    
     const mailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
     if(!correo.match(mailRegex)){
       //ALERTA FORMATO CORREO
@@ -34,40 +28,51 @@ const Formulario = ({data}) => {
       return
     }
 
-    if(parseInt(edad) <= 18){
+    if(parseInt(edad) < 18){
       //ALERTA MENOR EDAD
-      console.log('no se permiten menores de edad');
+      console.log('menor de edad');
       return
     }
 
-    
-    
+    return true
     //ALERTA INGRESO EXITOSO
-    setColaborador({
-    nombre: '',
-    correo: '',
-    edad: '',
-    cargo: '',
-    telefono: ''
-  }) */
+  }
+
+  const addColaborador = () => {
+    setColaboradores([...colaboradores, colaboradorNuevo])
+    setColaboradorNuevo({
+      nombre: '',
+      correo: '',
+      edad: '',
+      cargo: '',
+      telefono: ''
+    })
+  }
+  
+  const handleSubmit = e => {
+    e.preventDefault()
+    if(validateForm()){
+      addColaborador()
+    }
   }
 
   const handleChange = (dato, valor) => {
-    setColaborador(datosPrevios => ({
+    setColaboradorNuevo(datosPrevios => ({
       ...datosPrevios,
       [dato]: valor
       })
     );
   }
 
+
   return (
-    <Form onSubmit={validateForm}>
+    <Form onSubmit={handleSubmit}>
       <h2>Agregar Colaborador</h2>
       <Form.Control 
         placeholder="Nombre"
         type="text" 
         name="nombre"
-        value={colaborador.nombre}
+        value={colaboradorNuevo.nombre}
         autoComplete="false"
         onChange={e => handleChange('nombre', e.target.value)}
       />
@@ -75,7 +80,7 @@ const Formulario = ({data}) => {
         placeholder="Correo"
         type="text" 
         name="correo"
-        value={colaborador.correo}
+        value={colaboradorNuevo.correo}
         onChange={e => handleChange('correo', e.target.value)}
       />
       <Form.Control 
@@ -83,21 +88,21 @@ const Formulario = ({data}) => {
         type="number"
         min={1}
         name="edad"
-        value={colaborador.edad}
+        value={colaboradorNuevo.edad}
         onChange={e => handleChange('edad', e.target.value)}
       />
       <Form.Control 
         placeholder="Cargo"
         type="text"
         name="cargo"
-        value={colaborador.cargo}
+        value={colaboradorNuevo.cargo}
         onChange={e => handleChange('cargo', e.target.value)}
       />
       <Form.Control 
         placeholder="Telefono"
         type="tel"
         name="telefono"
-        value={colaborador.telefono}
+        value={colaboradorNuevo.telefono}
         onChange={e => handleChange('telefono', e.target.value)}
       />
       <Button variant="primary" type="submit">
