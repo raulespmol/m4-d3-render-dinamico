@@ -1,8 +1,8 @@
 import Table from 'react-bootstrap/Table';
 
 const Listado = ({data}) => {
-  return (
-    <Table striped bordered hover>
+  return (        
+    <Table bordered hover>
       <thead>
         <tr>
           <th>Nombre</th>
@@ -24,7 +24,7 @@ const Listado = ({data}) => {
               <td>{telefono}</td>
             </tr>
           )}
-        )}
+          )}
       </tbody>
     </Table>
   )

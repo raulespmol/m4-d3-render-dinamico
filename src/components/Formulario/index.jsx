@@ -15,7 +15,7 @@ const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
   const validateForm = () => {
     const {nombre, correo, edad, cargo, telefono} = colaboradorNuevo
 
-     if(!nombre || !correo || !edad || !cargo || !telefono){
+    if(!nombre || !correo || !edad || !cargo || !telefono){
       setAlert({msg: 'Completa todos los campos', color: 'danger'})
       return
     }
@@ -66,7 +66,7 @@ const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
     );
   }
 
-
+  //RENDER
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Agregar Colaborador</h2>
@@ -79,7 +79,7 @@ const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
         onChange={e => handleChange('nombre', e.target.value)}
       />
       <Form.Control 
-        placeholder="Correo"
+        placeholder="Correo (ejemplo@correo.cl)"
         type="text" 
         name="correo"
         value={colaboradorNuevo.correo}
@@ -101,13 +101,13 @@ const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
         onChange={e => handleChange('cargo', e.target.value)}
       />
       <Form.Control 
-        placeholder="Telefono"
-        type=""
+        placeholder="Telefono (12345678)"
+        type="tel"
         name="telefono"
         value={colaboradorNuevo.telefono}
         onChange={e => handleChange('telefono', e.target.value)}
       />
-      <Button variant="primary" type="submit">
+      <Button variant="dark" type="submit">
         Agregar
       </Button>
     </Form>
