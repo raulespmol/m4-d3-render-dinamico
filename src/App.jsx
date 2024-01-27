@@ -9,12 +9,32 @@ import './App.css'
 function App() {
   const [colaboradores, setColaboradores] = useState(BaseColaboradores)
   const [alert, setAlert] = useState({msg: '', color: ''})
+  const [search, setSearch] = useState('')
 
+  const handleSearch = e => {
+    e.preventDefault()
+    setSearch(e.target.value)  
+  }
+
+  const dataFiltered = colaboradores.filter((colaborador) => {
+    const {nombre, correo, edad, cargo, telefono} = colaborador
+    const searchFilter = search.toLowerCase()
+    return (
+      nombre.toLowerCase().includes(searchFilter) ||
+      correo.toLowerCase().includes(searchFilter) ||
+      edad.toLowerCase().includes(searchFilter) ||
+      cargo.toLowerCase().includes(searchFilter) ||
+      telefono.toLowerCase().includes(searchFilter)
+      );
+    })
+  
   return (
     <>
       <h2>Lista de Colaboradores</h2> 
-      <Buscador setFilter={setColaboradores} data={colaboradores}/>
-      <Listado data={colaboradores}/>
+      <Buscador 
+        filter={search} onChange={handleSearch}
+      />
+      <Listado data={dataFiltered}/>
       <Formulario 
         colaboradores={colaboradores}
         setColaboradores={setColaboradores} 
