@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './index.css'
 
-const Formulario = ({colaboradores, setColaboradores}) => {
+const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
   const [colaboradorNuevo, setColaboradorNuevo] = useState({
     nombre: '',
     correo: '',
@@ -16,26 +16,27 @@ const Formulario = ({colaboradores, setColaboradores}) => {
     const {nombre, correo, edad, cargo, telefono} = colaboradorNuevo
 
      if(!nombre || !correo || !edad || !cargo || !telefono){
-      //ALERTA COMPLETA LOS CAMPOS
-      console.log('hay campos vacios');
+      setAlert({msg: 'Completa todos los campos', color: 'danger'})
       return
     }
     
     const mailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
     if(!correo.match(mailRegex)){
-      //ALERTA FORMATO CORREO
-      console.log('formato correo incorrecto');
+      setAlert({msg: 'Formato de correo incorrecto', color: 'danger'})
       return
     }
 
     if(parseInt(edad) < 18){
-      //ALERTA MENOR EDAD
-      console.log('menor de edad');
+      setAlert({msg: 'No puedes registrar menores de edad', color: 'danger'})
+      return
+    }
+
+    if(telefono.length != 8){
+      setAlert({msg: 'Ingresa un número de teléfono de 8 dígitos', color: 'danger'})
       return
     }
 
     return true
-    //ALERTA INGRESO EXITOSO
   }
 
   const addColaborador = () => {
@@ -47,6 +48,7 @@ const Formulario = ({colaboradores, setColaboradores}) => {
       cargo: '',
       telefono: ''
     })
+    setAlert({msg: 'Colaborador ingresado correctamente', color: 'success'})
   }
   
   const handleSubmit = e => {
@@ -100,7 +102,7 @@ const Formulario = ({colaboradores, setColaboradores}) => {
       />
       <Form.Control 
         placeholder="Telefono"
-        type="tel"
+        type=""
         name="telefono"
         value={colaboradorNuevo.telefono}
         onChange={e => handleChange('telefono', e.target.value)}

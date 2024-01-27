@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table';
 
-export const Listado = ({data}) => {
+const Listado = ({data}) => {
   return (
     <Table striped bordered hover>
       <thead>
@@ -29,3 +29,5 @@ export const Listado = ({data}) => {
     </Table>
   )
 }
+
+export default Listado
