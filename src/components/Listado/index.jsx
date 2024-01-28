@@ -3,7 +3,7 @@ import './index.css'
 
 const Listado = ({data}) => {
   return (        
-    <Table bordered hover size='sm' responsive={'sm'}>
+    <Table bordered hover size='sm' responsive={'sm'} className='w-100'>
       <thead>
         <tr>
           <th>Nombre</th>
@@ -14,18 +14,27 @@ const Listado = ({data}) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((colaborador) => {
-          const {id, nombre, correo, edad, cargo, telefono} = colaborador
-          return (
-            <tr key={id}>
-              <td>{nombre}</td>
-              <td>{correo}</td>
-              <td>{edad}</td>
-              <td>{cargo}</td>
-              <td>{telefono}</td>
+        {data.length ? (
+          data.map(colaborador => {
+            const {id, nombre, correo, edad, cargo, telefono} = colaborador
+            return (
+              <tr key={id}>
+                <td>{nombre}</td>
+                <td>{correo}</td>
+                <td>{edad}</td>
+                <td>{cargo}</td>
+                <td>{telefono}</td>
+              </tr>
+            )
+          })
+          ) : (
+            <tr>
+              <td colSpan={5}>
+                No se encontraron coincidencias
+              </td>
             </tr>
-          )}
-          )}
+          )
+        }
       </tbody>
     </Table>
   )

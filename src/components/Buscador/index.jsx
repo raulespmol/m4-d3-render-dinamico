@@ -5,7 +5,7 @@ const Buscador = ({filter, onChange}) => {
 
   return (
     <Form.Control className='mb-3'
-      placeholder="Buscar"
+      placeholder="Buscar..."
       type="text" 
       name="search"
       autoComplete="false"

@@ -3,14 +3,16 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: #f4f3f0;
-}
-
-.formulario {
-  background-color: rgb(80, 85, 128);
+  background-color: #f9f9f9;
   border-radius: 10px;
 }
 
-.formulario h2 {
+.formulario {
+  background-color: #3b6597;
+  border-radius: 10px;
+}
+
+.formulario h3 {
   color: #FFF;
+  margin: 1rem 0
 }

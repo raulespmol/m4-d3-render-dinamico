@@ -112,7 +112,7 @@ const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
         value={colaboradorNuevo.telefono}
         onChange={e => handleChange('telefono', e.target.value)}
       />
-      <Button variant="dark" type="submit">
+      <Button variant="dark" type="submit" className="mb-3">
         Agregar
       </Button>
     </Form>

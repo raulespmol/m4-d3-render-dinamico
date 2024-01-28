@@ -1,11 +1,16 @@
 import Alert from 'react-bootstrap/Alert';
-import './index.css'
 
 const Alerta = ({msg, color}) => {
   return (
-    <Alert variant={color}>
-      {msg}
-    </Alert>
+    <>
+      {msg.length ? (
+        <Alert variant={color}>
+          {msg}
+        </Alert>
+      ) : (
+        null
+      )}
+    </>
   )
 }
 

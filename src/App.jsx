@@ -44,7 +44,7 @@ function App() {
           <Listado data={dataFiltered}/>
         </Col>
         <Col lg={4} className='formulario'>
-          <h2>Agregar Colaborador</h2>
+          <h3>Agregar Colaborador</h3>
           <Formulario 
             colaboradores={colaboradores}
             setColaboradores={setColaboradores} 
