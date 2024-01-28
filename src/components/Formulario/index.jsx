@@ -5,6 +5,7 @@ import './index.css'
 
 const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
   const [colaboradorNuevo, setColaboradorNuevo] = useState({
+    id: colaboradores.length + 1,
     nombre: '',
     correo: '',
     edad: '',
@@ -19,9 +20,9 @@ const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
       setAlert({msg: 'Completa todos los campos', color: 'danger'})
       return
     }
-    
-    const mailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
-    if(!correo.match(mailRegex)){
+
+    const mailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+    if(!correo.match(mailRegEx)){
       setAlert({msg: 'Formato de correo incorrecto', color: 'danger'})
       return
     }
@@ -42,6 +43,7 @@ const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
   const addColaborador = () => {
     setColaboradores([...colaboradores, colaboradorNuevo])
     setColaboradorNuevo({
+      id: colaboradores.length + 2,
       nombre: '',
       correo: '',
       edad: '',
@@ -49,6 +51,10 @@ const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
       telefono: ''
     })
     setAlert({msg: 'Colaborador ingresado correctamente', color: 'success'})
+
+    setTimeout(() => {
+      setAlert({msg: '', color: ''})
+    }, 5000);
   }
   
   const handleSubmit = e => {
@@ -69,7 +75,6 @@ const Formulario = ({colaboradores, setColaboradores, setAlert}) => {
   //RENDER
   return (
     <Form onSubmit={handleSubmit}>
-      <h2>Agregar Colaborador</h2>
       <Form.Control 
         placeholder="Nombre"
         type="text" 

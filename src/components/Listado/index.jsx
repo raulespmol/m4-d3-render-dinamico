@@ -1,8 +1,9 @@
 import Table from 'react-bootstrap/Table';
+import './index.css'
 
 const Listado = ({data}) => {
   return (        
-    <Table bordered hover>
+    <Table bordered hover size='sm' responsive={'sm'}>
       <thead>
         <tr>
           <th>Nombre</th>
@@ -13,10 +14,10 @@ const Listado = ({data}) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((colaborador, index) => {
-          const {nombre, correo, edad, cargo, telefono} = colaborador
+        {data.map((colaborador) => {
+          const {id, nombre, correo, edad, cargo, telefono} = colaborador
           return (
-            <tr key={index}>
+            <tr key={id}>
               <td>{nombre}</td>
               <td>{correo}</td>
               <td>{edad}</td>
