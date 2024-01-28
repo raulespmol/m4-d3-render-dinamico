@@ -3,7 +3,7 @@ import './index.css'
 
 const Listado = ({data}) => {
   return (        
-    <Table bordered hover size='sm' responsive={'sm'} className='w-100'>
+    <Table bordered hover size='sm' responsive className='w-100'>
       <thead>
         <tr>
           <th>Nombre</th>

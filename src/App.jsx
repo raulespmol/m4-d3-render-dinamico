@@ -35,7 +35,7 @@ function App() {
   return (
     <Container>
       <Row>
-        <Col lg={8}>
+        <Col lg={8} >
           <h2>Lista de Colaboradores</h2> 
           <Buscador 
             filter={search}
